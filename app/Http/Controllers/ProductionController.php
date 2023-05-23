@@ -65,9 +65,17 @@ class ProductionController extends Controller
 
     public function store(Request $request)
     {
-    
+        // $products = Product::findOrFail($request->product_id);
+        // $products -> productions()->create([
+           
+        //     'dateprod' => $request->dateprod,
+        //     'equipe' =>  $request->equipe,
+        //     'quart' =>  $request->quart,
+        //     'structure_id'=> $request->structure_id,
+        //     'line_id'=> $request->line_id,
+        // ]);
 
-
+        
         Production::create([
             'dateprod'=>$request->dateprod,
             'equipe'=>$request->equipe,
@@ -78,11 +86,11 @@ class ProductionController extends Controller
 
 
 
-
+            
 
         ]);
-
-
+       
+  
         return redirect()->route('productions.index')
                         ->with('success','Line created successfully');
     }
@@ -106,7 +114,7 @@ class ProductionController extends Controller
     public function edit(Production $production)
     {
         // return view('productions.edit',compact('production'));
-
+        
         $printings = Printing::all();
          return view('productions.show',compact('production', 'printings'));
 

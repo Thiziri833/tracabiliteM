@@ -2,9 +2,9 @@
     <div class="content-wrapper">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-12 mt-5">
+                <div class="col-md-11 mt-5">
                     <div class="card">
-                        <div class="card-header" style="font-weight: bold">Product List
+                        <div class="card-header" style="font-weight: bold">Products List
                             @can('product-create')
                                 <a href="{{ route('products.create') }}">
                                     <x-primary-button
@@ -21,7 +21,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @endif
-                                <div class="table-responsive">
+                                <div class="py-2">
                                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                         <table class="table table-bordered">
                                             <thead>
@@ -31,7 +31,7 @@
                                                     <th>Code</th>
                                                     <th>Description</th>
                                                     <th>DLUO</th>
-                                                    <th>Ligne</th>
+                                                    <th>Lines</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -61,15 +61,14 @@
                                                             </form>
                                                         </td>
                                                         <td>{{ ++$i }}</td>
+
                                                         <td>{{ $product->code }}</td>
                                                         <td>{{ $product->description }}</td>
                                                         <td>{{ $product->DLUO }}</td>
-                                                        <td>
-                                                            @foreach ($product->lines as $line)
-                                                                {{ $line->name }}
-                                                                <br>
-                                                            @endforeach
-                                                        </td>
+                                                         <td>{{ $product->line->name }}</td>  
+                                                        {{-- @if(isset($product->line) && !empty($product->line)) --}}
+                                                        {{-- {{ $product->line->name }} --}}
+                                                    {{-- @endif --}}
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -77,7 +76,7 @@
                                     </div>
                                 </div>
 
-                                {!! $products->links() !!}
+                                {{-- {!! $products->links() !!} --}}
                             </div>
                         </div>
                     </div>

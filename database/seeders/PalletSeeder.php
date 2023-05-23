@@ -14,11 +14,6 @@ class PalletSeeder extends Seeder
     public function run(): void
     {
         $pallet = Pallet::create([
-        'SSCC' => 12524,
-        'datefab' => '2023-09-14',
-        'DLUO' => '2025-09-14',
-        'quantiteplt' => 500,
-        'priting_id'=> 1,
         ]);
     }
 }

@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedInteger('line_id');
+            $table->unsignedInteger('line_id');
             $table->string('code')->unique();
             $table->text('description');
             $table->Integer('DLUO');
             $table->timestamps();
-            // $table->foreign('line_id')->references('id')->on('lines')->onDelete('restrict');
+            $table->foreign('line_id')->references('id')->on('lines')->onDelete('restrict');
 
-
+            
         });
     }
 

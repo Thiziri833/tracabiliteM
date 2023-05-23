@@ -57,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('impression/{printing}/crud-sscc-create', 'PrintingController@crudSsccCreate')->name('impression.crudSsccCreate');
 
     Route::resource('pallets', PalletController::class);
+    Route::get('/exportPDF/{pallet}', [PalletController::class, 'generatePDF'])->name('pallets.exportPDF');
 
 });
 

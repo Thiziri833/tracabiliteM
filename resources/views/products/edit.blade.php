@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-12 mt-5">
+                <div class="col-md-11 mt-5">
                     <div class="card">
                         <div class="card-header" style="font-weight: bold">Edit Product
                             <a href="{{ route('products.index') }}">
@@ -46,6 +46,17 @@
                                             <strong>DLUO:</strong>
                                             <input type="number" name="DLUO" value="{{ $product->DLUO }}"
                                                 class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <strong>Select Structure:</strong>
+                                            <select name="line_id" class="form-control">
+                                                @foreach ($lines as $line)
+                                                    <option value="{{ $line->id }}" {{ $product->line_id == $line->id ? 'selected':''}}>
+                                                        {{ $line->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="py-2">

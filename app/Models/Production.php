@@ -32,10 +32,10 @@ public function printings()
     return $this->hasMany(Printing::class, 'production_id','id');
 }
 
-// public function product()
-// {
-//     return $this->belongsTo(Product::class ,'product_id', 'id');
-// }
+public function product()
+{
+    return $this->belongsTo(Product::class ,'product_id', 'id');
+}
 public function structure()
 {
     return $this->belongsTo(Structure::class ,'structure_id', 'id');
@@ -46,7 +46,7 @@ public function line()
 }
 public static function boot()
         {
-
+            
             parent::boot();
 
             static::creating(function ($model) {
@@ -57,7 +57,7 @@ public static function boot()
         public static function bootp()
         {
             parent::bootp();
-
+        
             static::deleting(function ($production) {
                 if ($production->printings()->count() > 0) {
                     return false; // Annule la suppression

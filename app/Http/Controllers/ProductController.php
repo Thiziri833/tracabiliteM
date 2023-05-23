@@ -31,25 +31,31 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $lines = Line::all();
 
-        return view('products.create');
+        return view('products.create',compact('lines'));
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $lines = Line::findOrFail($request->line_id);
+        $lines -> products()->create([
+            'code'=>$request->code,
+            'description'=>$request->description,
+            'DLUO'=>$request->DLUO,
 
-
-        request()->validate([
-            'code' => 'required',
-            'description' => 'required',
-            'DLUO' => 'required',
         ]);
 
-        Product::create($request->all());
+        // request()->validate([
+        //     'code' => 'required',
+        //     'description' => 'required',
+        //     'DLUO' => 'required',
+        // ]);
+
+        // Product::create($request->all());
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
@@ -67,11 +73,11 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(int $product)
-    {
-        // $lines = Line::all();
-        // $product = Product::findOrFail($product);
+    { 
+        $lines = Line::all();
+        $product = Product::findOrFail($product);
 
-        return view('products.edit',compact('product'));
+        return view('products.edit',compact('lines','product'));
     }
 
     /**

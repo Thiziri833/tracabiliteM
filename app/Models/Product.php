@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Line;
 
 class product extends Model
 {
@@ -15,7 +14,7 @@ class product extends Model
     ];
     public function lines()
     {
-        return $this->belongsToMany(Line::class);
+        return $this->hasMany(Line::class);
     }
     public function productions()
     {
@@ -25,11 +24,11 @@ class product extends Model
         return $this->hasMany(Pallet::class);
         }
 
-//  public function line()
-// {
-//     return $this->belongsTo(line::class, 'line_id', 'id');
-// }
+ public function line()
+{
+    return $this->belongsTo(line::class, 'line_id', 'id');
+}
 
-    protected $dates =['deleted_at'];
+    protected $dates =['deleted_at']; 
 }
 

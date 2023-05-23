@@ -11,8 +11,8 @@
             </select>
         </div>
     </div>
-
-
+    
+     
 
     @if (!is_null($selectedStructure))
         {{-- <div class="form-group row">
@@ -41,7 +41,18 @@
     @endif
 
     @if (!is_null($selectedLine))
+        {{-- <div class="form-group row">
+            <label for="product" class="col-md-4 col-form-label text-md-right">{{ __('Product') }}</label>
 
+            <div class="col-md-6">
+                <select wire:model="selectedProduct" class="form-control" name="product_id">
+                    <option value="" selected>Choose product</option>
+                    @foreach($products as $product)
+                        <option value="{{ $product->id }}">{{ $product->code }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Products:</strong>

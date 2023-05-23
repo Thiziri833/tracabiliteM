@@ -29,29 +29,22 @@ class LineController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Line $line)
+    public function create()
     {
-        $orderProducts = $line->products;
         $structures = Structure::all();
-        return view('lines.create', compact('structures', 'orderProducts'));
+        return view('lines.create', compact('structures'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,Line $line)
+    public function store(Request $request)
     {
         $structures = Structure::findOrFail($request->structure_id);
-        $line= $structures -> lines()->create([
+        $structures -> lines()->create([
             'name'=>$request->name,
             'description'=>$request->description,
         ]);
-        foreach ($request->lineProducts as $product) {
-            $line->products()->attach($product['product_id'],
-                ['cadence' => $product['cadence'], 'uniteprod' => $product['uniteprod'], 'quantite' => $product['quantite'],
-
-            ]);
-        }
         return redirect()->route('lines.index')
                         ->with('success','Line created successfully');
     }
@@ -61,8 +54,7 @@ class LineController extends Controller
      */
     public function show(Line $line)
     {
-        $lineProducts = $line->products;
-        return view('lines.show',compact('line', 'lineProducts'));
+        //
     }
 
     /**

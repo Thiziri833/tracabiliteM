@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-12 mt-5">
+                <div class="col-md-11 mt-5">
                     <div class="card">
                         <div class="card-header" style="font-weight: bold">Show Product
                             <a href="{{ route('products.index') }}">

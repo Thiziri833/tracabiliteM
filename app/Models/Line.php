@@ -25,7 +25,7 @@ class Line extends Model
     }
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'line_product')->withPivot('id','cadence', 'uniteprod', 'quantite');
+        return $this->hasMany(Product::class, 'line_id','id');
     }
     public function productions()
     {

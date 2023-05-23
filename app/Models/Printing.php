@@ -22,7 +22,7 @@ class Printing extends Model
         'printing_id',
     ];
 
-
+   
     public function production()
 {
     return $this->belongsTo(Production::class ,'production_id', 'id');
@@ -33,7 +33,7 @@ class Printing extends Model
         public static function boot()
         {
             // parent::boot();
-
+    
             // static::creating(function ($model) {
             //     $year = Carbon::now()->format('Y');
             //     $model->printing_id = IdGenerator::generate(['table' => 'printings', 'field' => 'printing_id', 'length' => 11, 'prefix' => 'PRN'.$year]);
