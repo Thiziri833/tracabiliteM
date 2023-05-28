@@ -41,6 +41,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // Valider les données du formulaire
+        $validatedData = $request->validate([
+            'code' => 'required',
+            'description' => 'required',
+            'DLUO' => 'required',
+        ]);
+
+        Product::create($validatedData);
         $lines = Line::findOrFail($request->line_id);
         $lines -> products()->create([
             'code'=>$request->code,
@@ -73,7 +81,7 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(int $product)
-    { 
+    {
         $lines = Line::all();
         $product = Product::findOrFail($product);
 

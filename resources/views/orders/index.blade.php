@@ -2,9 +2,9 @@
     <div class="content-wrapper">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-10 mt-5">
+                <div class="col-md-12 mt-5">
                     <div class="card">
-                        <div class="card-header" style="font-weight: bold">Orders List
+                        <div class="card-header" style="font-weight: bold">Order List
                             @can('order-create')
                                 <a href="{{ route('orders.create') }}">
                                     <x-primary-button
@@ -20,7 +20,7 @@
                                     <p>{{ $message }}</p>
                                 </div>
                             @endif
-                            <div class="py-2">
+                            <div class="table-responsive">
                                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                     <table class="table table-bordered">
                                         <thead>

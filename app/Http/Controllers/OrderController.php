@@ -40,6 +40,13 @@ class OrderController extends Controller
      */
     public function store(Request $request, Order $order)
     {
+        $validatedData = $request->validate([
+            'numBC' => 'required|unique:orders,numBC',
+            'depotdest' => 'required',
+            'dateorder' => 'required',
+        ]);
+
+        Order::create($validatedData);
         $customers = Customer::findOrFail($request->customer_id);
         $order= $customers -> orders()->create([
             'numBC' => $request->numBC,

@@ -3,8 +3,8 @@
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LineController;
+use App\Http\Controllers\LoadController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderdetController;
 use App\Http\Controllers\PalletController;
 use App\Http\Controllers\PrintingController;
 use App\Http\Controllers\ProductController;
@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StructureController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderdetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,10 +46,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
-    Route::resource('orderdets', OrderdetController::class);
+    Route::get('orderdets/create/{order}', [OrderdetController::class, 'create'])->name('orderdets.create');
+    Route::post('orderdets/store/{order}', [OrderdetController::class, 'store'])->name('orderdets.store');
+    Route::get('orderdets/index/{order}', [OrderdetController::class, 'index'])->name('orderdets.index');
+    // Route::get('orders/{order}', 'OrderdetController@show')->name('orders.show');
+
+
+
+
     Route::resource('structures', StructureController::class);
     Route::resource('lines', LineController::class);
     Route::resource('customers', CustomerController::class);
+    Route::resource('loads', LoadController::class);
 
     Route::resource('productions', ProductionController::class);
     Route::resource('printings', PrintingController::class);
@@ -58,6 +67,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('pallets', PalletController::class);
     Route::get('/exportPDF/{pallet}', [PalletController::class, 'generatePDF'])->name('pallets.exportPDF');
+
+
 
 });
 

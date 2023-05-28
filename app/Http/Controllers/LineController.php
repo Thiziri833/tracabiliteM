@@ -40,6 +40,13 @@ class LineController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        Line::create($validatedData);
         $structures = Structure::findOrFail($request->structure_id);
         $structures -> lines()->create([
             'name'=>$request->name,

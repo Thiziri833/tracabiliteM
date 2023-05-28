@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <div class="container" style="width: 800px">
             <div class="row justify-content-center">
-                <div class="col-md-8 mt-5">
+                <div class="col-8 mt-5">
                     <div class="card">
                         <div class="card-header" style="font-weight: bold">
                             <a href="{{ route('pallets.index') }}">
@@ -14,7 +14,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-8">
                                     <div class="form-group text-center">
                                         <div class="barcode-container d-inline-block">
                                             {!! $barcode !!}

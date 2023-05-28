@@ -9,17 +9,17 @@
  use Illuminate\Support\Str;
  use Illuminate\Support\Carbon;
 use DateTime;
- 
- 
+
+
  use App\Http\Requests\StoreImpressionRequest;
  use App\Http\Requests\UpdateImpressionRequest;
- 
+
  class PrintingController extends Controller
  {
      /**
       * Display a listing of the resource.
       */
-   
+
      public function index()
      {
         $currentDate = now();
@@ -31,16 +31,16 @@ use DateTime;
             //  return view('printings.index', compact('printings', 'production' ,'currentDate'));
 
      }
- 
+
      /**
       * Show the form for creating a new resource.
       */
-    
+
 
     public function create(Production $production)
     {
         $currentDate = now()->toDateString();
-   
+
         // return view('printings.create', compact('production'));
         $printing = new Printing();
         $user = auth()->user();
@@ -48,21 +48,24 @@ use DateTime;
         return view('printings.create', compact('currentDate' ,'production','user'));
 
     }
- 
+
      /**
       * Store a newly created resource in storage.
       */
-  
+
 
 public function store(Request $request)
 {
-    $request->validate([
+    $validatedData = $request->validate([
         'production_id' => 'required|exists:productions,id',
         'quantite' => 'required|numeric',
         'date_inst' => 'required|date',
         'LOT' => 'required',
 
     ]);
+
+
+    Printing::create($validatedData);
     $user = auth()->user();
     $date_inst = new DateTime($request->input('date_inst'));
 
@@ -81,7 +84,7 @@ public function store(Request $request)
         $pallet = new Pallet;
         $pallet->priting_id = $printing->id;
         $pallet->SSCC = 'SSCC' . Str::random(6); // Générer un NSSCC aléatoire
-        
+
         $pallet->datefab = $printing->production->dateprod;
         // $pallet->DLC = $this->calculateDLC($printing->production->dateprod, $printing->production->product->DLU);
         $pallet->product_id = $printing->production->product_id;
@@ -104,14 +107,14 @@ public function store(Request $request)
      {
        $production = $printing->production;
     //    return view('printings.show', compact('printing', 'production'));
-       
+
        $pallets = Pallet::where('priting_id', $printing->id)->get();
 
         return view('printings.show',compact('printing',  'production','pallets'));
 
-       
+
      }
- 
+
      /**
       * Show the form for editing the specified resource.
       */
@@ -123,7 +126,7 @@ public function store(Request $request)
          $printing = Printing::findOrFail($printing);
          return view('printings.edit', compact('printing', 'productions'));
      }
- 
+
      /**
       * Update the specified resource in storage.
       */
@@ -134,16 +137,16 @@ public function store(Request $request)
             'dateimp' => $request->dateimp,
             'quantite'=> $request->quantite,
             // 'LOT'=> $request->LOT,
- 
+
            ]);
            return redirect()->route('printings.index')
            ->with('success','Production updated successfully');    }
- 
+
      /**
       * Remove the specified resource from storage.
       */
      public function destroy(int $printing_id)
-     {  
+     {
         $printing = Printing::findOrFail($printing_id);
 
         // Vérifier s'il existe des printings associés à cette production
@@ -151,12 +154,12 @@ public function store(Request $request)
             return redirect()->route('printings.index')
                             ->with('error','Cannot delete production because it has associated printings');
         }
-    
+
         // Supprimer la production s'il n'y a pas de printings associés
         $printing->delete();
-    
+
         return redirect()->route('printings.index')
                         ->with('success','Production deleted successfully');
-    
+
      }
  }

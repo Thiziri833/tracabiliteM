@@ -17,7 +17,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Code:</strong>
-                                        <input type="number" id="code" name="code" class="form-control"
+                                        <input type="text" id="code" name="code" class="form-control"
                                             style="width: 300px" value="{{ $customer->code }}" disabled>
                                     </div>
                                 </div>

@@ -31,7 +31,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Quart:</strong>
-                                        <input type="quart" id="quart" name="quart" class="form-control"
+                                        <input type="text" id="quart" name="quart" class="form-control"
                                             style="width: 300px" value=" {{ $production->quart }}" disabled>
                                     </div>
                                 </div>

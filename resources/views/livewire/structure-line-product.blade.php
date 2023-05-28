@@ -11,8 +11,8 @@
             </select>
         </div>
     </div>
-    
-     
+
+
 
     @if (!is_null($selectedStructure))
         {{-- <div class="form-group row">
@@ -29,7 +29,7 @@
         </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Lines:</strong>
+                <strong>Lignes:</strong>
                 <select wire:model="selectedLine" class="form-control" name="line_id">
                     <option value="" selected>Choose Line</option>
                     @foreach($lines as $line)
@@ -55,7 +55,7 @@
         </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Products:</strong>
+                <strong>Produits:</strong>
                 <select wire:model="selectedProduct" class="form-control" name="product_id">
                     <option value="" selected>Choose Product</option>
                     @foreach($products as $product)

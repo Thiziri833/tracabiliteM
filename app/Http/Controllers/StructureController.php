@@ -39,6 +39,13 @@ class StructureController extends Controller
      */
     public function store(Request $request)
     {
+        // Valider les données du formulaire
+        $validatedData = $request->validate([
+            'name'=>'required',
+        ]);
+
+        // Créer le client avec les données validées
+        Structure::create($validatedData);
         Structure::create([
             'name'=>$request->name,
         ]);
@@ -93,11 +100,11 @@ class StructureController extends Controller
             return redirect()->route('structures.index')
                              ->with('error', 'Impossible de supprimer la structure car elle possède des lignes associées.');
         }
-    
+
         $structure->delete();
-    
+
         return redirect()->route('structures.index')
                         ->with('success', 'Structure deleted successfully with all its lines');
-    
+
     }
 }

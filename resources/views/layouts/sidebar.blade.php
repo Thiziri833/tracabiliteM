@@ -54,8 +54,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#"
-                        class="nav-link">
+                    <a href="{{ route('loads.index') }}"
+                        class="nav-link {{ request()->routeIs('loads.index') ? 'active' : '' }}">
                         <i class="fas fa-truck" style="color: yellow"></i>
                         <p>Chargements</p>
                     </a>

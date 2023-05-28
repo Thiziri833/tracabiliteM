@@ -38,6 +38,15 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        // Valider les données du formulaire
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'wilaya' => 'required',
+            'activite' => 'required',
+        ]);
+
+        // Créer le client avec les données validées
+        Customer::create($validatedData);
         Customer::create([
             'name'=>$request->name,
             'wilaya'=>$request->wilaya,

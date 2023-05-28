@@ -11,7 +11,7 @@
                                     <p>{{ $message }}</p>
                                 </div>
                             @endif
-                            <div class="table-responsive    ">
+                            <div class="table-responsive">
                                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                                     <table class="table table-bordered">
                                         <thead>
@@ -20,11 +20,8 @@
                                                 <th>N°SSCC</th>
                                                 <th>Date Fabrication</th>
                                                 <th>DLC</th>
-                                                <th>Date Production</th>
                                                 <th>Equipe</th>
                                                 <th>Quart</th>
-                                                <th>Structure</th>
-                                                <th>Line</th>
                                                 <th>Product</th>
                                                 <th>LOT</th>
                                             </tr>
@@ -59,11 +56,8 @@
                                                     <td>{{ $pallet->SSCC }}</td>
                                                     <td>{{ $pallet->datefab }}</td>
                                                     <td>{{ $pallet->DLC }}</td>
-                                                    <td>{{ $pallet->printing->production->dateprod }}</td>
                                                     <td>{{ $pallet->printing->production->equipe }}</td>
                                                     <td>{{ $pallet->printing->production->quart }}</td>
-                                                    <td>{{ $pallet->printing->production->structure->name }}</td>
-                                                    <td>{{ $pallet->printing->production->line->name }}</td>
                                                     <td>{{ $pallet->product->code }}</td>
                                                     <td>{{ $pallet->printing->LOT }}</td>
                                                 </tr>

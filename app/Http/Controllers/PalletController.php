@@ -40,6 +40,7 @@ class PalletController extends Controller
      */
      public function store(Request $request)
  {
+    
 
     $product = Product::findOrFail($request->product_id);
     $product->pallets()->create([
